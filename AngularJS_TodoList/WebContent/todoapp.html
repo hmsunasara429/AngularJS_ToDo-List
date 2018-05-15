@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ToDo List App</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<style type="text/css">
+
+.table > tbody > tr > td {
+     vertical-align: middle;
+}
+
+</style>
+</head>
+
+<body data-ng-app="TodoListApp" data-ng-controller="TodoListController">
+
+<div class="container">
+  
+  <div>
+   <h3>Add new ToDo item</h3>
+  <form>
+  	<div data-ng-show="showSuccess" data-ng-model="successMsg" class="alert alert-success">
+  		<strong>Success!</strong> <span data-ng-bind="successText" ></span>
+	</div>
+  	<div data-ng-show="showError" data-ng-model="errorMsg" class="alert alert-danger">
+ 		<strong>Error!</strong> <span data-ng-bind="errorText" ></span>
+	</div>
+    <div class="form-group">
+      <label for="todo">ToDo Name:</label>
+      <input type="text" class="form-control" id="todo" data-ng-model="newTodo">
+    </div>
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <input type="text" class="form-control" id="description" data-ng-model="newDescription">
+    </div>
+    <button type="button" class="btn" data-ng-click="addTodo();">Add New ToDo Item</button>
+    <button type="button" class="btn" data-ng-click="reset();">Reset</button>
+  </form>
+  
+   
+   
+  
+  </div>
+  
+  <br/>
+  <br/>
+  
+  <div>
+  <h3>ToDo List</h3>
+           
+  <div data-ng-if="todoList.length<=0">
+  	<p>There are no ToDo items to display.</p>
+  </div>
+           
+  <div data-ng-if="todoList.length>0">
+	  <table class="table">
+	    <thead>
+	      <tr>
+	        <th class="col-sm-3">ToDo</th>
+	        <th class="col-sm-4">Description</th>
+	        <th class="col-sm-1"></th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr data-ng-repeat="x in todoList">
+	        <td class="col-sm-3">{{x.todo}}</td>
+	        <td class="col-sm-4">{{x.description}}</td>
+	        <td class="col-sm-1"> <button type="button" class="btn btn-link" data-ng-click="remove($index);">Remove</button> </td>
+	      </tr>
+	    </tbody>
+	  </table>
+  </div>         
+              
+  </div>
+</div>
+
+
+
+
+
+<script type="text/javascript" src="app.js">
+
+
+
+</script>
+
+</body>
+</html>
